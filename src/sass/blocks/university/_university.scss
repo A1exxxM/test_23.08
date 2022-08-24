@@ -22,19 +22,21 @@
             background: #0656B4;
             border-radius: 5px;
             border: none;
-            font-weight: 500;
-            font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
             position: absolute;
             left: 56.54%;
             right: 27.92%;
             top: 79.43%;
             bottom: 6.86%;
+            font-family: 'Formular';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
         }
         &-chance {
             position: absolute;
@@ -45,14 +47,16 @@
             background: #DFE9F5;
             border-radius: 5px;
             border: none;
-            font-weight: 500;
-            font-size: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #0656B4;
-            letter-spacing: 0.05em;
             text-transform: uppercase;
+            font-family: 'Formular';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
         }
         &-logotype {
             position: absolute;
@@ -65,6 +69,129 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+    }
+    &__info {
+        padding: 24px;
+        height: 192px;
+        width: 100%;
+        border-radius: 0px 0px 10px 10px;
+        background-color: #fff;
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+        &-links {
+            display: flex;
+            width: fit-content;
+        }
+        &-favorite {
+            border: 1px solid #D8D8D8;
+            border-radius: 49px;
+            background-color: #fff;
+            width: 145px;
+            height: 40px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            padding: 4px 8px 4px 8px;
+        }
+        &-bell,&-share {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            margin-left: 4px;
+            transition: 0.5s all;
+            &:hover {
+                background-color: #D8D8D8;
+            }
+        }
+        &-title {
+            font-family: 'Formular';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 31px;
+            line-height: 36px;
+        }
+    }
+    &__descr {
+        display: flex;
+        width: 70%;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 6px;
+        &-feedback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            list-style-type: none;
+            font-weight: 400;
+            font-size: 16px;
+            color: #767676;
+            &::before {
+                content: "";
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                background: #767676;
+                border-radius: 100%;
+                margin-right: 16px;
+            }
+            &:first-child {
+                &::before {
+                    display: none;
+                }
+                a {
+                    margin-left: 4px;
+                    color: #767676;
+                    font-family: 'Formular';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 15px;
+                    span {
+                        font-family: 'Formular';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 15px;
+                    }
+                }
+            }
+            &_mark {
+                color: #222222;
+                font-family: 'Formular';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 15px;
+            }
+            a {
+                font-family: 'Open Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                color: #767676;
+            }
+        }
+    }
+    &__update {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        &-date {
+            font-weight: 400;
+            font-size: 12px;
+            color: #767676;
+        }
+        &-mistake {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            color: #0656B4;
+            margin-left: 16px;
         }
     }
 }

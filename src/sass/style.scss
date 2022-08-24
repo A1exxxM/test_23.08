@@ -1,9 +1,14 @@
 @import 'libs/bootstrap-reboot.min';
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+@import 'libs/stylesheet';
 @import 'base/variables';
 @import 'base/mixins';
+@import 'base/block/block';
+@import 'base/divider/divider';
 @import 'blocks/header/header';
 @import 'blocks/university/university';
+@import 'blocks/information/information';
+@import 'blocks/specialities/specialities';
 
 * {
     font-family: 'Open Sans', sans-serif;

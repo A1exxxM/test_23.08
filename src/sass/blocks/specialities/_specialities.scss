@@ -1,0 +1,77 @@
+.specialities {
+    min-height: 800px;
+    padding-top: 48px;
+    &__wrapper {
+        width: 904px;
+        float: right;
+    }
+    &__preview {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__title {
+        font-family: 'Formular';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 31px;
+        color: #222222;
+        line-height: 36px;
+    }
+    &__counter {
+        color: #767676;
+        font-size: 13px;
+    }
+    &__university {
+        color: #A7A7A7;
+        font-size: 12px;
+    }
+    &__filter {
+        font-size: 13px;
+        color: #222222;
+        margin-top: 22px;
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        justify-content: space-between;
+        transition: 0.5s all;
+        &-item {
+            transition: 0.5s all;
+            color: #767676;
+            img {
+                display: none;
+            }
+            margin-left: 24px;
+            cursor: pointer;
+        }
+    }
+    &__item {
+        height: 248px;
+        margin-top: 16px;
+        padding: 16px;
+        display: grid;
+        grid-template-columns: 168px 418px 254px;
+        gap: 16px;
+        &-descr {
+            grid-column: 2 / 3;
+        }
+        &-subtitle {
+            font-weight: 600;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #767676;
+            font-feature-settings: 'tnum' on, 'lnum' on;
+        }
+        &-title {
+            margin-top: 4px;
+            font-family: 'Formular';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            color: #222222;
+        }
+        &-tag {
+            display: flex;
+        }
+    }
+}

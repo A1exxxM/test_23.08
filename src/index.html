@@ -72,8 +72,158 @@
                 <button class="university__preview-feedback">оставить отзыв</button>
                 <button class="university__preview-chance">проверить шансы поступить</button>
             </div>
+            <div class="university__info">
+                <div class="university__info-wrapper">
+                    <h1 class="university__info-title">Московский государственный технический <br>университет имени Н.Э. Бáумана</h1>
+                    <div class="university__info-links">
+                        <button class="university__info-favorite">
+                            <img src="icons/like.svg" alt="icon like">
+                            <div class="university__info-favorite_text">В Избранное</div>
+                        </button>
+                        <button class="university__info-bell">
+                            <img src="icons/bell.svg" alt="icon bell">
+                        </button>
+                        <button class="university__info-share">
+                            <img src="icons/share.svg" alt="icon share">
+                        </button>
+                    </div>
+                </div>
+                <ul class="university__descr">
+                    <li class="university__descr-feedback">
+                        <img src="icons/Vector.svg" alt="icon star">
+                        <span class="university__descr-feedback_mark">2.4</span>
+                        <div class="university__descr-feedback_counter">
+                            <a href="#">(<span>75</span> отзывов)</a>
+                        </div>
+                    </li>
+                    <li class="university__descr-feedback">
+                        <a href="#">Москва, ул. Новочеремушкинская, д. 69</a>
+                    </li>
+                    <li class="university__descr-feedback">Приёмная комиссия:<a href="tel:+74991812133">&nbsp+7 (499) 181-21-33</a></li>
+                </ul>
+                <div class="university__update">
+                    <div class="university__update-date">Обновлено 11.11.2011</div>
+                    <div class="university__update-mistake">Сообщить об ошибке</div>
+                </div>
+            </div>
         </div>
     </main>
+    <section class="information">
+        <div class="container">
+            <div class="information__wrapper">
+                <h2 class="information__title">Основная информация</h2>
+                <div class="information__blocks">
+                    <div class="block information__blocks-amounts">
+                        <div class="information__blocks-amounts_pay">
+                            <div class="information__blocks-amounts_counter">4 532</div>
+                            <div class="information__blocks-amounts_descr">платных мест</div>
+                        </div>
+                        <div class="information__blocks-amounts_free">
+                            <div class="information__blocks-amounts_counter">1 702</div>
+                            <div class="information__blocks-amounts_descr">бюджетных мест</div>
+                        </div>
+                    </div>
+                    <div class="block information__blocks-places">
+                        <div class="information__blocks-places_city">
+                            <div class="information__blocks-places_counter">1 место</div>
+                            <div class="information__blocks-places_descr">в Санкт-Петербурге</div>
+                        </div>
+                        <div class="information__blocks-amounts_country">
+                            <div class="information__blocks-places_counter">12 место</div>
+                            <div class="information__blocks-places_descr">в РФ</div>
+                        </div>
+                    </div>
+                    <div class="block information__blocks-facilities">
+                        <div class="information__blocks-facilities_item">
+                            <span>Государственный</span>
+                            <div class="information__blocks-round">
+                                <img src="icons/check_24px.svg" alt="check icon">
+                            </div>
+                        </div>
+                        <div class="divider information__blocks-facilities_divider"></div>
+                        <div class="information__blocks-facilities_item">
+                            <span>Общежитие</span>
+                            <div class="information__blocks-round information__blocks-round_red">
+                                <img src="icons/close_24px.svg" alt="close icon">
+                            </div>
+                        </div>
+                        <div class="divider information__blocks-facilities_divider"></div>
+                        <div class="information__blocks-facilities_item">
+                            <span>Военная кафедра</span>
+                            <div class="information__blocks-round">
+                                <img src="icons/check_24px.svg" alt="check icon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block information__blocks-authorization">
+                        <div class="information__blocks-authorization_descr">Вы представитель УЗ?</div>
+                        <button class="information__blocks-authorization_access">Получить доступ</button>
+                    </div>
+                </div>
+                <h3 class="information__subtitle">Проходной балл</h3>
+                <div class="block information__chart">
+                    <div class="block information__check">Проходной балл на бюджет: <span>165</span></div>
+                    <canvas id="myChart" width="844px" height="247px"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="specialities">
+        <div class="container">
+            <div class="specialities__wrapper">
+                <div class="specialities__preview">
+                    <div class="specialities__info">
+                        <h2 class="specialities__title">Специальности</h2>
+                        <div class="specialities__counter"><span>432</span> Специальности</div>
+                    </div>
+                    <div class="specialities__university">Специальности <span>МГТУ им. Н. Э. Баумана</span></div>
+                </div>
+                <div class="specialities__filter">Сортировать: 
+                    <span class="specialities__filter-item">
+                        по оплате в год
+                        <img src="icons/sort.svg" alt="icon sort">
+                    </span>
+                    <span class="specialities__filter-item">
+                        по отзывам
+                        <img src="icons/sort.svg" alt="icon sort">
+                    </span>
+                    <span class="specialities__filter-item">
+                        по проходному баллу
+                        <img src="icons/sort.svg" alt="icon sort">
+                    </span> 
+                    <span class="specialities__filter-item">
+                        по количеству бюджетных мест
+                        <img src="icons/sort.svg" alt="icon sort">
+                    </span> 
+                </div>
+                <div class="block specialities__item">
+                    <div class="specialities__item-preview">
+                        <img src="img/specialities.png" alt="preview img">
+                    </div>
+                    <div class="specialities__item-descr">
+                        <div class="specialities__item-subtitle">бакалавриат · 01.03.00</div>
+                        <h3 class="specialities__item-title">Прикладная математика и информатика</h3>
+                        <div class="specialities__item-tags">
+                            <div class="specialities__item-tag">Очно</div>
+                            <div class="specialities__item-tag">Заочно</div>
+                            <div class="specialities__item-tag">Очно-заочно</div>
+                            <div class="specialities__item-tag">Дистанционно</div>
+                        </div>
+                        <div class="specialities__item-links">
+                            <a href="#">Программное обеспечение вычислительных систем </a>
+                            ·  
+                            <a href="#">Математическое и программное обеспечение защиты информации</a>
+                            ·  
+                            <a href="#">Экономика</a>
+                            ·   
+                            <a href="#">Организация педагогическо...</a>
+                        </div>
+                        <div class="specialities__item-all">Все 43 профиля</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <script src="js/script.js"></script>
 </body>
 </html>
