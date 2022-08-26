@@ -1,0 +1,72 @@
+.description {
+    min-height: 850px;
+    padding: 48px 0;
+    &__wrapper {
+        float: right;
+        width: 904px;
+    }
+    &__preview {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__title {
+        font-family: 'Formular';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 31px;
+        line-height: 36px;
+        color: #222222;
+    }
+    &__university {
+        font-size: 12px;
+        line-height: 20px;
+    }
+    &__photo {
+        width: 904px;
+        height: 360px;
+        border-radius: 10px;
+        background-color: #fff;
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 536px 360px;
+        gap: 8px;
+        img {
+            cursor: pointer;
+            transition: 1s all;
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+        &-collage {
+            display: grid;
+            grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+            gap: 8px;
+        }
+    }
+    &__info {
+        width: 904px;
+        height: 320px;
+        background: #FFFFFF;
+        border-radius: 10px;
+        padding: 24px;
+        margin-top: 8px;
+        p {
+            font-size: 16px;
+            color: #222222;
+            &:first-child {
+                margin-bottom: 55px;
+            }
+        }
+        &-show {
+            color: #0656B4;
+            font-family: 'Formular';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 24px;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+    }
+}

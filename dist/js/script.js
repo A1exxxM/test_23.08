@@ -13688,7 +13688,7 @@ function graph() {
         fill: true,
         backgroundColor: 'rgba(171, 200, 234, 0.6)',
         borderColor: 'rgba(171, 200, 234, 0.6)',
-        data: [120, 200, 100, 230, 170, 140, 200, 180, 1, 200]
+        data: [120, 200, 100, 230, 170, 140, 200, 165, 1, 200]
       }]
     },
     options: {
