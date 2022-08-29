@@ -13707,6 +13707,68 @@ function graph() {
 
 /***/ }),
 
+/***/ "./src/js/header.js":
+/*!**************************!*\
+  !*** ./src/js/header.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function header() {
+  const location = document.querySelector('.header__location'),
+        modal = document.querySelector('.modal');
+  location.addEventListener('click', () => {
+    modal.classList.toggle('modal_active');
+    modal.classList.toggle('animate__animated');
+    modal.classList.toggle('animate__fadeInUp');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Escape') {
+      modal.classList.remove('modal_active');
+      modal.classList.remove('animate__animated');
+      modal.classList.remove('animate__fadeInUp');
+    }
+  });
+  const content = document.querySelector('.header__navbar-items'),
+        next = document.querySelector('.header__navbar-next'),
+        prev = document.querySelector('.header__navbar-prev');
+
+  function slide(mainArrow, otherArrow, value) {
+    if (mainArrow.classList.contains('header__navbar_activeArrow')) {
+      content.style.transform = `translateX(${value})`;
+      mainArrow.classList.remove('header__navbar_activeArrow'), otherArrow.classList.add('header__navbar_activeArrow');
+      mainArrow.style.opacity = '0';
+      otherArrow.style.opacity = '1';
+    }
+  }
+
+  next.addEventListener('click', () => {
+    slide(next, prev, '-243px');
+  });
+  prev.addEventListener('click', () => {
+    slide(prev, next, '0px');
+  });
+  let block = document.createElement('div');
+  block.classList.add('header__popup');
+  block.innerHTML = `
+    <a href="#" class="header__popup-item">Высшее</a>
+    <a href="#" class="header__popup-item">Среднее</a>   
+    `;
+  const item = document.querySelector('#spec');
+  item.addEventListener('mouseenter', () => {
+    item.append(block);
+  });
+  item.addEventListener('mouseleave', () => {
+    block.remove();
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (header);
+
+/***/ }),
+
 /***/ "./src/js/main.js":
 /*!************************!*\
   !*** ./src/js/main.js ***!
@@ -13717,12 +13779,33 @@ function graph() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _graph__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./graph */ "./src/js/graph.js");
+/* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header */ "./src/js/header.js");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal */ "./src/js/modal.js");
+
+
 
 window.addEventListener('DOMContentLoaded', () => {
   "use strict";
 
+  Object(_header__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_graph__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  Object(_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
 });
+
+/***/ }),
+
+/***/ "./src/js/modal.js":
+/*!*************************!*\
+  !*** ./src/js/modal.js ***!
+  \*************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function modal() {}
+
+/* harmony default export */ __webpack_exports__["default"] = (modal);
 
 /***/ })
 
