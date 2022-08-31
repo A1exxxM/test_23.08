@@ -6,6 +6,8 @@
         &-link {
             color: #767676;
             font-size: 14px;
+            cursor: pointer;
+            z-index: 10;
             &:hover {
                 color: #767676;
                 text-decoration: none;

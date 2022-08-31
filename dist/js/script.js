@@ -13664,6 +13664,62 @@ function styleChanged(style, prevStyle) {
 
 /***/ }),
 
+/***/ "./src/js/data.js":
+/*!************************!*\
+  !*** ./src/js/data.js ***!
+  \************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const data = [{
+  "location": "Россия",
+  "region": ""
+}, {
+  "location": "Алтайский край",
+  "region": ""
+}, {
+  "location": "Барнаул",
+  "region": "Алтайский край"
+}, {
+  "location": "Бийск",
+  "region": "Алтайский край"
+}, {
+  "location": "Благовещенка",
+  "region": "Алтайский край"
+}, {
+  "location": "Волчиха",
+  "region": "Алтайский край"
+}, {
+  "location": "Камень-на-Оби",
+  "region": "Алтайский край"
+}, {
+  "location": "Новоалтайск",
+  "region": "Алтайский край"
+}, {
+  "location": "Родино",
+  "region": "Алтайский край"
+}, {
+  "location": "Амурская область",
+  "region": ""
+}, {
+  "location": "Белогорск",
+  "region": "Амурская область"
+}, {
+  "location": "Благовещенск",
+  "region": "Амурская область"
+}, {
+  "location": "Свободный",
+  "region": "Амурская область"
+}, {
+  "location": "Архангельская область",
+  "region": ""
+}];
+/* harmony default export */ __webpack_exports__["default"] = (data);
+
+/***/ }),
+
 /***/ "./src/js/graph.js":
 /*!*************************!*\
   !*** ./src/js/graph.js ***!
@@ -13803,7 +13859,64 @@ window.addEventListener('DOMContentLoaded', () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function modal() {}
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
+
+
+function modal() {
+  const block = document.querySelector('.modal__block-locations');
+  _data__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(element => {
+    const item = document.createElement('li');
+    item.classList.add('modal__block-locations_item');
+    item.innerHTML = `
+            ${element.location}
+            <div>${element.region}</div>
+        `;
+    block.appendChild(item);
+  });
+  const modalSelectedItemsWrapper = document.querySelector('.modal__block-selected_wrapper'),
+        modalSelectedItems = document.querySelector('.modal__block-selected'),
+        input = document.querySelector('.modal__block-input'),
+        submitButton = document.querySelector('.modal__submit');
+  const items = block.childNodes;
+  items.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      function deleteItem(block) {
+        block.style.opacity = '0';
+        setTimeout(function () {
+          block.remove();
+
+          if (modalSelectedItemsWrapper.childNodes.length == 0) {
+            modalSelectedItems.style.display = "none";
+          }
+        }, 400);
+      }
+
+      if (modalSelectedItemsWrapper.childNodes.length !== 0) {
+        for (let k = 0; k < modalSelectedItemsWrapper.childNodes.length; k++) {
+          if (modalSelectedItemsWrapper.childNodes[k].textContent == _data__WEBPACK_IMPORTED_MODULE_0__["default"][i].location) {
+            deleteItem(modalSelectedItemsWrapper.childNodes[k]);
+          }
+        }
+      }
+
+      const selectedBlock = document.createElement('div');
+      selectedBlock.classList.add('modal__block-selected_item');
+      selectedBlock.innerHTML = `
+            <span>${_data__WEBPACK_IMPORTED_MODULE_0__["default"][i].location}</span>
+            <img src="icons/close_outlined.svg" alt="#">
+            `;
+
+      if (modalSelectedItemsWrapper.childNodes.length == 0) {
+        modalSelectedItems.style.display = "block";
+      }
+
+      selectedBlock.lastElementChild.addEventListener('click', () => {
+        deleteItem(selectedBlock);
+      });
+      modalSelectedItemsWrapper.appendChild(selectedBlock);
+    });
+  });
+}
 
 /* harmony default export */ __webpack_exports__["default"] = (modal);
 
