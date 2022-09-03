@@ -1,10 +1,15 @@
 .menu {
     position: fixed;
     width: 280px;
-    display: none;
     height: 480px;
     top: 100px;
     left: 350px;
+    transition: 0.6s all;
+    z-index: -1;
+    opacity: 0;
+    &_active {
+        opacity: 1;
+    }
     &__items {
         list-style-type: none;
         width: 100%;

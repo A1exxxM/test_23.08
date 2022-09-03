@@ -1,4 +1,4 @@
-import data from './data';
+import {data} from './data';
 function modal() {
     const block = document.querySelector('.modal__block-locations');
     data.forEach(element => {
@@ -32,8 +32,9 @@ function modal() {
             }
             if (modalSelectedItemsWrapper.childNodes.length !== 0) {
                 for (let k = 0; k < modalSelectedItemsWrapper.childNodes.length; k++) {
-                    if (modalSelectedItemsWrapper.childNodes[k].textContent == data[i].location) {
+                    if (modalSelectedItemsWrapper.childNodes[k].childNodes[1].textContent == data[i].location) {
                         deleteItem(modalSelectedItemsWrapper.childNodes[k]);
+                        return;
                     }
                 }
             } 
@@ -53,11 +54,39 @@ function modal() {
             modalSelectedItemsWrapper.appendChild(selectedBlock);
         });
     });
-    
 
+
+
+    input.addEventListener('input', () => {
+        items.forEach(item => {
+            if (item.textContent.toUpperCase().indexOf(input.value.toUpperCase()) == -1) {
+                item.style.display = "none";
+            } else {
+                item.style.display = "";
+            }
+        });
+    });
     
-    
-    
+    const locationPath = document.querySelector('.header__location-city'),
+          modal = document.querySelector('.modal');
+    submitButton.addEventListener('click', () => {
+        if (modalSelectedItemsWrapper.childNodes.length !== 0) {
+            let str = modalSelectedItemsWrapper.childNodes[0].childNodes[1].textContent;
+            for (let i = 1; i < modalSelectedItemsWrapper.childNodes.length; i++) {
+                str += `,${modalSelectedItemsWrapper.childNodes[i].childNodes[1].textContent}`;
+            }
+            if (str.length < 20) {
+                locationPath.textContent = str;
+            } else {
+                locationPath.textContent = str.slice(0,20) + '...';
+            }
+        } else {
+            locationPath.textContent = "Выберите город";
+        }
+        modal.classList.remove('modal_active');
+        modal.classList.remove('animate__animated');
+        modal.classList.remove('animate__fadeInUp');
+    });
 }
 
 export default modal;

@@ -13668,11 +13668,14 @@ function styleChanged(style, prevStyle) {
 /*!************************!*\
   !*** ./src/js/data.js ***!
   \************************/
-/*! exports provided: default */
+/*! exports provided: data, information, searchInfo */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "data", function() { return data; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "information", function() { return information; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchInfo", function() { return searchInfo; });
 const data = [{
   "location": "Россия",
   "region": ""
@@ -13716,7 +13719,28 @@ const data = [{
   "location": "Архангельская область",
   "region": ""
 }];
-/* harmony default export */ __webpack_exports__["default"] = (data);
+const information = {
+  "name": "Московский государственный технический университет имени Н.Э. Бáумана",
+  "address": "Москва, ул. Новочеремушкинская, д. 69",
+  "tel": "+7 (499) 181-21-33"
+};
+const searchInfo = [{
+  "name": "МГУ — Московский государственный университет имени М.В. Ломоносова",
+  "type": "Вуз"
+}, {
+  "name": "Прикладная математика и информатика",
+  "type": "Специальность"
+}, {
+  "name": "Институт бизнеса и маркетинга",
+  "type": "Учебное заведение"
+}, {
+  "name": "Российская академия народного хозяйства и государственной службы при Президенте Российской Федерации",
+  "type": "Учебное заведение"
+}, {
+  "name": "Московский государственный технический университет имени Н.Э. Бáумана",
+  "type": "Вуз"
+}];
+
 
 /***/ }),
 
@@ -13837,6 +13861,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _graph__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./graph */ "./src/js/graph.js");
 /* harmony import */ var _header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./header */ "./src/js/header.js");
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal */ "./src/js/modal.js");
+/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
+/* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search */ "./src/js/search.js");
+
+
 
 
 
@@ -13846,6 +13874,8 @@ window.addEventListener('DOMContentLoaded', () => {
   Object(_header__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_graph__WEBPACK_IMPORTED_MODULE_0__["default"])();
   Object(_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_scroll__WEBPACK_IMPORTED_MODULE_3__["default"])();
+  Object(_search__WEBPACK_IMPORTED_MODULE_4__["default"])();
 });
 
 /***/ }),
@@ -13864,7 +13894,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function modal() {
   const block = document.querySelector('.modal__block-locations');
-  _data__WEBPACK_IMPORTED_MODULE_0__["default"].forEach(element => {
+  _data__WEBPACK_IMPORTED_MODULE_0__["data"].forEach(element => {
     const item = document.createElement('li');
     item.classList.add('modal__block-locations_item');
     item.innerHTML = `
@@ -13893,8 +13923,9 @@ function modal() {
 
       if (modalSelectedItemsWrapper.childNodes.length !== 0) {
         for (let k = 0; k < modalSelectedItemsWrapper.childNodes.length; k++) {
-          if (modalSelectedItemsWrapper.childNodes[k].textContent == _data__WEBPACK_IMPORTED_MODULE_0__["default"][i].location) {
+          if (modalSelectedItemsWrapper.childNodes[k].childNodes[1].textContent == _data__WEBPACK_IMPORTED_MODULE_0__["data"][i].location) {
             deleteItem(modalSelectedItemsWrapper.childNodes[k]);
+            return;
           }
         }
       }
@@ -13902,7 +13933,7 @@ function modal() {
       const selectedBlock = document.createElement('div');
       selectedBlock.classList.add('modal__block-selected_item');
       selectedBlock.innerHTML = `
-            <span>${_data__WEBPACK_IMPORTED_MODULE_0__["default"][i].location}</span>
+            <span>${_data__WEBPACK_IMPORTED_MODULE_0__["data"][i].location}</span>
             <img src="icons/close_outlined.svg" alt="#">
             `;
 
@@ -13916,9 +13947,129 @@ function modal() {
       modalSelectedItemsWrapper.appendChild(selectedBlock);
     });
   });
+  input.addEventListener('input', () => {
+    items.forEach(item => {
+      if (item.textContent.toUpperCase().indexOf(input.value.toUpperCase()) == -1) {
+        item.style.display = "none";
+      } else {
+        item.style.display = "";
+      }
+    });
+  });
+  const locationPath = document.querySelector('.header__location-city'),
+        modal = document.querySelector('.modal');
+  submitButton.addEventListener('click', () => {
+    if (modalSelectedItemsWrapper.childNodes.length !== 0) {
+      let str = modalSelectedItemsWrapper.childNodes[0].childNodes[1].textContent;
+
+      for (let i = 1; i < modalSelectedItemsWrapper.childNodes.length; i++) {
+        str += `,${modalSelectedItemsWrapper.childNodes[i].childNodes[1].textContent}`;
+      }
+
+      if (str.length < 20) {
+        locationPath.textContent = str;
+      } else {
+        locationPath.textContent = str.slice(0, 20) + '...';
+      }
+    } else {
+      locationPath.textContent = "Выберите город";
+    }
+
+    modal.classList.remove('modal_active');
+    modal.classList.remove('animate__animated');
+    modal.classList.remove('animate__fadeInUp');
+  });
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (modal);
+
+/***/ }),
+
+/***/ "./src/js/scroll.js":
+/*!**************************!*\
+  !*** ./src/js/scroll.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
+
+
+function scroll() {
+  const asideMenuBlock = document.querySelector('.menu');
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 800) {
+      asideMenuBlock.classList.add('menu_active');
+    } else {
+      asideMenuBlock.classList.remove('menu_active');
+    }
+  });
+  const infoBlock = document.createElement('div');
+  infoBlock.classList.add('infoBlock');
+  infoBlock.innerHTML = `
+    <div class="container">
+        <div class="infoBlock__wrapper">
+            <div class="infoBlock__info">
+                <h2 class="infoBlock__title">${_data__WEBPACK_IMPORTED_MODULE_0__["information"].name}</h2>
+                <ul class="infoBlock__items">
+                    <li class="infoBlock__item">${_data__WEBPACK_IMPORTED_MODULE_0__["information"].address}</li>
+                    <li class="infoBlock__item">Приёмная комиссия: <a href="tel:+74991812133">${_data__WEBPACK_IMPORTED_MODULE_0__["information"].tel}</a></li>
+                </ul>
+            </div>
+            <button class="favorite">
+                <img src="icons/like.svg" alt="icon like">
+                <div class="favorite__text">В Избранное</div>
+            </button>
+        </div>
+    </div>
+    `;
+  document.body.appendChild(infoBlock);
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 820) {
+      infoBlock.style.display = 'block';
+      infoBlock.classList.remove('animate__fadeOutUp');
+      infoBlock.classList.add('animate__animated');
+      infoBlock.classList.add('animate__fadeInDown');
+    } else {
+      infoBlock.classList.remove('animate__fadeInDown');
+      infoBlock.classList.add('animate__fadeOutUp');
+    }
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (scroll);
+
+/***/ }),
+
+/***/ "./src/js/search.js":
+/*!**************************!*\
+  !*** ./src/js/search.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
+
+
+function search() {
+  const items = document.querySelector('.search__items'),
+        searchBlock = document.querySelector('.search');
+  _data__WEBPACK_IMPORTED_MODULE_0__["searchInfo"].forEach(elem => {
+    const block = document.createElement('li');
+    block.classList.add('search__item');
+    block.innerHTML = `
+        <div class = "search__item-name">${elem.name}</div>
+        <div class = "search__item-type">${elem.type}</div>
+        `;
+    items.appendChild(block);
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (search);
 
 /***/ })
 

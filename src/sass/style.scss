@@ -4,6 +4,7 @@
 @import 'libs/animation';
 @import 'base/variables';
 @import 'base/mixins';
+@import 'base/favorite/favorite';
 @import 'base/block/block';
 @import 'base/divider/divider';
 @import 'blocks/header/header';
@@ -13,6 +14,8 @@
 @import 'blocks/description/description';
 @import 'blocks/menu/menu';
 @import 'blocks/modal/modal';
+@import 'blocks/infoBlock/infoBlock';
+@import 'blocks/search/search';
 
 * {
     font-family: 'Open Sans', sans-serif;
