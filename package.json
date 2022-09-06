@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
+  "homepage": "https://a1exxxm.github.io/test_23.08/",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",
@@ -39,6 +41,7 @@
   ],
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "chart.js": "^3.9.1"
+    "chart.js": "^3.9.1",
+    "gh-pages": "^4.0.0"
   }
 }
