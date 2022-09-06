@@ -14208,13 +14208,15 @@ function search() {
   });
   const input = document.querySelector('.header__form-input'),
         modal = document.querySelector('.modal'),
+        modalWrapper = document.querySelector('.modal__wrapper'),
         searchBlockChilds = items.childNodes,
         popular = document.querySelector('.search__subtitle');
   input.addEventListener('focus', () => {
-    if (modal.classList.contains('modal_active')) {
-      modal.classList.remove('modal_active');
-      modal.classList.remove('animate__animated');
-      modal.classList.remove('animate__fadeInUp');
+    if (modal.style.display == 'block') {
+      modal.style.display = 'none';
+      modalWrapper.classList.remove('modal_active');
+      modalWrapper.classList.remove('animate__animated');
+      modalWrapper.classList.remove('animate__fadeInUp');
     }
 
     searchBlock.style.display = "block";
