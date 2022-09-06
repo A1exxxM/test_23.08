@@ -22,6 +22,7 @@
         width: fit-content;
         justify-content: space-between;
         cursor: pointer;
+        z-index: 100001;
         &-city {
             margin-left: 8px;
             font-size: 14px;
@@ -30,6 +31,7 @@
     }
     &__form {
         position: relative;
+        z-index: 100001;
         input {
             border: 0;
             width: 592px;
@@ -82,7 +84,8 @@
             width: 1216px;
             overflow: hidden;
             position: relative;
-            height: 120px;
+            height: fit-content;
+            z-index: 100001;
         }
         &_activeArrow {
             cursor: pointer;

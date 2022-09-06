@@ -55,20 +55,15 @@ function modal() {
         });
     });
 
-
+    
 
     input.addEventListener('input', () => {
-        items.forEach(item => {
-            if (item.textContent.toUpperCase().indexOf(input.value.toUpperCase()) == -1) {
-                item.style.display = "none";
-            } else {
-                item.style.display = "";
-            }
-        });
+        checkInput(input,items);
     });
     
     const locationPath = document.querySelector('.header__location-city'),
-          modal = document.querySelector('.modal');
+          modal = document.querySelector('.modal'),
+          modalWrapper = document.querySelector('.modal__wrapper');
     submitButton.addEventListener('click', () => {
         if (modalSelectedItemsWrapper.childNodes.length !== 0) {
             let str = modalSelectedItemsWrapper.childNodes[0].childNodes[1].textContent;
@@ -83,10 +78,28 @@ function modal() {
         } else {
             locationPath.textContent = "Выберите город";
         }
-        modal.classList.remove('modal_active');
-        modal.classList.remove('animate__animated');
-        modal.classList.remove('animate__fadeInUp');
+        modal.style.display = 'none';
+        modalWrapper.classList.remove('modal_active');
+        modalWrapper.classList.remove('animate__animated');
+        modalWrapper.classList.remove('animate__fadeInUp');
     });
 }
 
-export default modal;
+function checkInput(input,items) {
+    items.forEach(item => {
+        if (item.textContent.toUpperCase().indexOf(input.value.toUpperCase()) == -1) {
+            item.style.display = "none";
+        } else {
+            item.style.display = "";
+            // for (let i = 0; i < item.textContent.length; i++) {
+            //     for (let k = 0; k < input.value.length; k++) {
+            //         if (item.textContent.toUpperCase()[i] == input.value.toUpperCase()[k]) {
+                        
+            //         }
+            //     }
+            // }
+        }
+    });
+}
+
+export {modal,checkInput};

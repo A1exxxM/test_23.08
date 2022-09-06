@@ -13664,6 +13664,104 @@ function styleChanged(style, prevStyle) {
 
 /***/ }),
 
+/***/ "./src/js/carousel.js":
+/*!****************************!*\
+  !*** ./src/js/carousel.js ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function carousel() {
+  const images = document.querySelectorAll('.description__photo-collage img'),
+        imagesMain = document.querySelector('.description__photo-main img'),
+        carousel = document.querySelector('.carousel'),
+        carouselBlock = document.querySelector('.carousel__block'),
+        arrowRight = document.querySelector('.carousel__right'),
+        arrowLeft = document.querySelector('.carousel__left');
+  let index = 0;
+  images.forEach(image => {
+    const blockImg = document.createElement('img');
+    blockImg.src = image.src;
+    carouselBlock.appendChild(blockImg);
+  });
+  const blockImg = document.createElement('img');
+  blockImg.src = imagesMain.src;
+  carouselBlock.appendChild(blockImg);
+
+  function setVisibility() {
+    let i = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    carouselBlock.childNodes.forEach(item => {
+      item.style.opacity = '0';
+    });
+    carouselBlock.childNodes[i].style.opacity = '1';
+  }
+
+  setVisibility();
+  arrowRight.addEventListener('click', () => {
+    if (index == carouselBlock.childNodes.length - 1) {
+      index = 0;
+    } else {
+      index++;
+    }
+
+    setVisibility(index);
+  });
+  arrowLeft.addEventListener('click', () => {
+    if (index == 0) {
+      index = carouselBlock.childNodes.length - 1;
+    } else {
+      index--;
+    }
+
+    setVisibility(index);
+  });
+
+  function openCarousel() {
+    carousel.style.display = 'block';
+    setTimeout(function () {
+      carouselBlock.style.opacity = '1';
+      arrowRight.style.opacity = '1';
+      arrowLeft.style.opacity = '1';
+    });
+  }
+
+  function closeCarousel() {
+    carousel.style.display = 'none';
+    carouselBlock.style.opacity = '0';
+    arrowRight.style.opacity = '0';
+    arrowLeft.style.opacity = '0';
+  }
+
+  carousel.addEventListener('click', e => {
+    if (e.target === carousel) {
+      closeCarousel();
+    }
+  });
+  images.forEach(item => {
+    item.addEventListener('click', () => {
+      carouselBlock.childNodes.forEach((child, i) => {
+        if (child.src == item.src) {
+          index = i;
+          setVisibility(index);
+        }
+
+        openCarousel();
+      });
+    });
+  });
+  imagesMain.addEventListener('click', () => {
+    index = carouselBlock.childNodes.length - 1;
+    setVisibility(index);
+    openCarousel();
+  });
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (carousel);
+
+/***/ }),
+
 /***/ "./src/js/data.js":
 /*!************************!*\
   !*** ./src/js/data.js ***!
@@ -13798,17 +13896,37 @@ function graph() {
 __webpack_require__.r(__webpack_exports__);
 function header() {
   const location = document.querySelector('.header__location'),
-        modal = document.querySelector('.modal');
+        modal = document.querySelector('.modal'),
+        modalWrapper = document.querySelector('.modal__wrapper');
+  modal.style.display = 'none';
+
+  function toggleModal() {
+    if (modal.style.display == 'none') {
+      modal.style.display = 'block';
+    } else {
+      modal.style.display = 'none';
+    }
+
+    modalWrapper.classList.toggle('modal_active');
+    modalWrapper.classList.toggle('animate__animated');
+    modalWrapper.classList.toggle('animate__fadeInUp');
+  }
+
   location.addEventListener('click', () => {
-    modal.classList.toggle('modal_active');
-    modal.classList.toggle('animate__animated');
-    modal.classList.toggle('animate__fadeInUp');
+    toggleModal();
+  });
+  modal.addEventListener('click', e => {
+    if (e.target == modal) {
+      toggleModal();
+    }
   });
   document.addEventListener('keydown', e => {
     if (e.code === 'Escape') {
-      modal.classList.remove('modal_active');
-      modal.classList.remove('animate__animated');
-      modal.classList.remove('animate__fadeInUp');
+      if (modal.style.display = 'none') {
+        toggleModal();
+      } else {
+        return;
+      }
     }
   });
   const content = document.querySelector('.header__navbar-items'),
@@ -13836,12 +13954,15 @@ function header() {
     <a href="#" class="header__popup-item">Высшее</a>
     <a href="#" class="header__popup-item">Среднее</a>   
     `;
-  const item = document.querySelector('#spec');
+  const item = document.querySelector('#spec'),
+        wrapper = document.querySelector('.header__navbar-wrapper');
   item.addEventListener('mouseenter', () => {
+    wrapper.style.height = '120px';
     item.append(block);
   });
   item.addEventListener('mouseleave', () => {
     block.remove();
+    wrapper.style.height = 'fit-content';
   });
 }
 
@@ -13863,6 +13984,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal */ "./src/js/modal.js");
 /* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scroll */ "./src/js/scroll.js");
 /* harmony import */ var _search__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search */ "./src/js/search.js");
+/* harmony import */ var _carousel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./carousel */ "./src/js/carousel.js");
+
 
 
 
@@ -13873,9 +13996,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   Object(_header__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_graph__WEBPACK_IMPORTED_MODULE_0__["default"])();
-  Object(_modal__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_modal__WEBPACK_IMPORTED_MODULE_2__["modal"])();
   Object(_scroll__WEBPACK_IMPORTED_MODULE_3__["default"])();
   Object(_search__WEBPACK_IMPORTED_MODULE_4__["default"])();
+  Object(_carousel__WEBPACK_IMPORTED_MODULE_5__["default"])();
 });
 
 /***/ }),
@@ -13884,11 +14008,13 @@ window.addEventListener('DOMContentLoaded', () => {
 /*!*************************!*\
   !*** ./src/js/modal.js ***!
   \*************************/
-/*! exports provided: default */
+/*! exports provided: modal, checkInput */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modal", function() { return modal; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkInput", function() { return checkInput; });
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
 
 
@@ -13948,16 +14074,11 @@ function modal() {
     });
   });
   input.addEventListener('input', () => {
-    items.forEach(item => {
-      if (item.textContent.toUpperCase().indexOf(input.value.toUpperCase()) == -1) {
-        item.style.display = "none";
-      } else {
-        item.style.display = "";
-      }
-    });
+    checkInput(input, items);
   });
   const locationPath = document.querySelector('.header__location-city'),
-        modal = document.querySelector('.modal');
+        modal = document.querySelector('.modal'),
+        modalWrapper = document.querySelector('.modal__wrapper');
   submitButton.addEventListener('click', () => {
     if (modalSelectedItemsWrapper.childNodes.length !== 0) {
       let str = modalSelectedItemsWrapper.childNodes[0].childNodes[1].textContent;
@@ -13975,13 +14096,29 @@ function modal() {
       locationPath.textContent = "Выберите город";
     }
 
-    modal.classList.remove('modal_active');
-    modal.classList.remove('animate__animated');
-    modal.classList.remove('animate__fadeInUp');
+    modal.style.display = 'none';
+    modalWrapper.classList.remove('modal_active');
+    modalWrapper.classList.remove('animate__animated');
+    modalWrapper.classList.remove('animate__fadeInUp');
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (modal);
+function checkInput(input, items) {
+  items.forEach(item => {
+    if (item.textContent.toUpperCase().indexOf(input.value.toUpperCase()) == -1) {
+      item.style.display = "none";
+    } else {
+      item.style.display = ""; // for (let i = 0; i < item.textContent.length; i++) {
+      //     for (let k = 0; k < input.value.length; k++) {
+      //         if (item.textContent.toUpperCase()[i] == input.value.toUpperCase()[k]) {
+      //         }
+      //     }
+      // }
+    }
+  });
+}
+
+
 
 /***/ }),
 
@@ -14053,6 +14190,8 @@ function scroll() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./src/js/data.js");
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal */ "./src/js/modal.js");
+
 
 
 function search() {
@@ -14066,6 +14205,35 @@ function search() {
         <div class = "search__item-type">${elem.type}</div>
         `;
     items.appendChild(block);
+  });
+  const input = document.querySelector('.header__form-input'),
+        modal = document.querySelector('.modal'),
+        searchBlockChilds = items.childNodes,
+        popular = document.querySelector('.search__subtitle');
+  input.addEventListener('focus', () => {
+    if (modal.classList.contains('modal_active')) {
+      modal.classList.remove('modal_active');
+      modal.classList.remove('animate__animated');
+      modal.classList.remove('animate__fadeInUp');
+    }
+
+    searchBlock.style.display = "block";
+    searchBlock.classList.add("animate__animated");
+    searchBlock.classList.add("animate__fadeInUp");
+  });
+  input.addEventListener('blur', () => {
+    searchBlock.style.display = "none";
+    searchBlock.classList.remove("animate__animated");
+    searchBlock.classList.remove("animate__fadeInUp");
+  });
+  input.addEventListener('input', () => {
+    Object(_modal__WEBPACK_IMPORTED_MODULE_1__["checkInput"])(input, searchBlockChilds);
+
+    if (input.value !== '') {
+      popular.style.display = 'none';
+    } else {
+      popular.style.display = 'block';
+    }
   });
 }
 

@@ -22,7 +22,7 @@
                     <div class="header__form-icon">
                         <img src="icons/search.svg" alt="search icon">
                     </div>
-                    <input type="text" placeholder="Учебное заведение, специальность или профессия">
+                    <input class="header__form-input" type="text" placeholder="Учебное заведение, специальность или профессия">
                 </form>
                 <div class="header__favorite">
                     <div class="header__favorite-wrapper">
@@ -544,27 +544,42 @@
         </ul>
     </aside>
     <div class="modal">
-        <div class="modal__block">
-            <form action="#">
-                <input type="text" class="modal__block-input" placeholder="Регион, город, населенный пункт">
-            </form>
-            <div class="modal__block-selected">
-                <div class="modal__block-selected_wrapper">
-                    
+        <div class="modal__wrapper">
+            <div class="modal__block">
+                <form action="#">
+                    <input type="text" class="modal__block-input" placeholder="Регион, город, населенный пункт">
+                </form>
+                <div class="modal__block-selected">
+                    <div class="modal__block-selected_wrapper">
+                        
+                    </div>
+                    <div class="divider modal__block-selected_divider"></div>
                 </div>
-                <div class="divider modal__block-selected_divider"></div>
+                <ul class="modal__block-locations">
+                    
+                </ul>
             </div>
-            <ul class="modal__block-locations">
-                
-            </ul>
+            <div class="modal__submit">Сохранить</div>
         </div>
-        <div class="modal__submit">Сохранить</div>
     </div>
+
     <div class="search">
         <div class="search__subtitle">популярное:</div>
         <ul class="search__items">
 
         </ul>
+    </div>
+
+    <div class="carousel">
+        <div class="carousel__right">
+            <img src="icons/arrow right.svg" alt="arrow right icon">
+        </div>
+        <div class="carousel__left">
+            <img src="icons/arrow left.svg" alt="arrow left icon">
+        </div>
+        <div class="carousel__block">
+            
+        </div>
     </div>
     <script src="js/script.js"></script>
 </body>

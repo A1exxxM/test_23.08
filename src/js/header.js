@@ -1,18 +1,36 @@
 function header() {
     const location = document.querySelector('.header__location'),
-          modal = document.querySelector('.modal');
-
+          modal = document.querySelector('.modal'),
+          modalWrapper = document.querySelector('.modal__wrapper');
+    
+    modal.style.display = 'none';
+    function toggleModal() {
+        if (modal.style.display == 'none') {
+            modal.style.display = 'block';
+        } else {
+            modal.style.display = 'none';
+        }
+        modalWrapper.classList.toggle('modal_active');
+        modalWrapper.classList.toggle('animate__animated');
+        modalWrapper.classList.toggle('animate__fadeInUp');
+    }   
+    
     location.addEventListener('click', () =>{
-        modal.classList.toggle('modal_active');
-        modal.classList.toggle('animate__animated');
-        modal.classList.toggle('animate__fadeInUp');
+        toggleModal();
     });
 
+    modal.addEventListener('click', (e) => {
+        if (e.target == modal) {
+            toggleModal();
+        }
+    });
     document.addEventListener('keydown', (e) => {
         if(e.code === 'Escape') {
-            modal.classList.remove('modal_active');
-            modal.classList.remove('animate__animated');
-            modal.classList.remove('animate__fadeInUp');
+            if (modal.style.display = 'none') {
+                toggleModal();
+            } else {
+                return;
+            }
         }
     });
     
@@ -45,13 +63,16 @@ function header() {
     <a href="#" class="header__popup-item">Высшее</a>
     <a href="#" class="header__popup-item">Среднее</a>   
     `
-    const item = document.querySelector('#spec');
+    const item = document.querySelector('#spec'),
+          wrapper = document.querySelector('.header__navbar-wrapper');
     item.addEventListener('mouseenter', () =>{
+        wrapper.style.height = '120px';
         item.append(block);
     });
 
     item.addEventListener('mouseleave', () => {
         block.remove();
+        wrapper.style.height = 'fit-content';
     });
 }
 

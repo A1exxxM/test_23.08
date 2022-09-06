@@ -1,6 +1,6 @@
 .search {
     position: absolute;
-    display: block;
+    display: none;
     z-index: 30;
     top: 90px;
     left: 660px;
@@ -11,6 +11,8 @@
     border-radius: 10px;
     padding: 16px 0;
     overflow: hidden;
+    transition: 0.5s all;
+    z-index: 100001;
     &__subtitle {
         letter-spacing: 3px;
         text-transform: uppercase;
